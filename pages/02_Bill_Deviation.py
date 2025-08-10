@@ -17,10 +17,28 @@ def main():
     # Center content with full width
     col1, col2, col3 = st.columns([1, 8, 1])
     with col2:
-        # Access button
-        if st.button("🔗 Open Tool", type="primary", use_container_width=True):
-            st.warning("This tool requires login. Contact administrator for access.")
-            st.markdown("🔗 [Open Tool](https://stream-bill-generator-pjzpbb7a9fdxfmpgpg7t4d.streamlit.app/)")
+        # Three access buttons
+        st.markdown("### Choose Access Method:")
+        st.warning("⚠️ This tool requires login authentication")
+        
+        col_a, col_b, col_c = st.columns(3)
+        
+        with col_a:
+            if st.button("🔗 Open in New Tab", use_container_width=True):
+                st.markdown("""
+                <script>
+                    window.open('https://stream-bill-generator-pjzpbb7a9fdxfmpgpg7t4d.streamlit.app/', '_blank');
+                </script>
+                """, unsafe_allow_html=True)
+                st.info("Login required")
+        
+        with col_b:
+            if st.button("📋 Copy Link", use_container_width=True):
+                st.code("https://stream-bill-generator-pjzpbb7a9fdxfmpgpg7t4d.streamlit.app/")
+                st.success("Link copied!")
+        
+        with col_c:
+            st.markdown("🔗 [Direct Link](https://stream-bill-generator-pjzpbb7a9fdxfmpgpg7t4d.streamlit.app/)")
 
 # Navigation
 create_back_button()

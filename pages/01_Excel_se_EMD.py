@@ -17,15 +17,27 @@ def main():
     # Center content with full width
     col1, col2, col3 = st.columns([1, 8, 1])
     with col2:
-        # Access button
-        if st.button("🔗 Open Tool", type="primary", use_container_width=True):
-            st.markdown("""
-            <script>
-                window.open('https://marudharhr.onrender.com/', '_blank');
-            </script>
-            """, unsafe_allow_html=True)
-            st.success("Tool opened!")
-            st.markdown("🔗 [Open Tool](https://marudharhr.onrender.com/)")
+        # Three access buttons
+        st.markdown("### Choose Access Method:")
+        
+        col_a, col_b, col_c = st.columns(3)
+        
+        with col_a:
+            if st.button("🔗 Open in New Tab", use_container_width=True):
+                st.markdown("""
+                <script>
+                    window.open('https://marudharhr.onrender.com/', '_blank');
+                </script>
+                """, unsafe_allow_html=True)
+                st.success("Tool opened!")
+        
+        with col_b:
+            if st.button("📋 Copy Link", use_container_width=True):
+                st.code("https://marudharhr.onrender.com/")
+                st.success("Link copied!")
+        
+        with col_c:
+            st.markdown("🔗 [Direct Link](https://marudharhr.onrender.com/)")
 
 # Navigation
 create_back_button()
