@@ -34,67 +34,67 @@ def create_tool_grid():
             "page": "pages/03_Tender_Processing.py"
         },
         {
-            "name": "Contract Management",
-            "description": "Contract lifecycle and document management",
+            "name": "Bill Note Sheet",
+            "description": "Bill Note Sheet Generator for PWD documentation",
             "icon": "📝",
             "category": "processing",
             "status": "internal",
             "url": None,
-            "page": "pages/04_Contract_Management.py"
+            "page": "pages/04_Bill_Note_Sheet.py"
         },
         {
-            "name": "Work Order System", 
-            "description": "Generate and track work orders efficiently",
-            "icon": "🏗️",
-            "category": "operations",
+            "name": "Deductions Table", 
+            "description": "Calculate all standard deductions for bill amounts",
+            "icon": "📊",
+            "category": "financial",
             "status": "internal",
             "url": None,
-            "page": "pages/05_Work_Order_System.py"
+            "page": "pages/05_Deductions_Table.py"
         },
         {
-            "name": "Payment Processing",
-            "description": "Handle payments, bills and financial transactions",
-            "icon": "💳",
-            "category": "financial",
+            "name": "Delay Calculator",
+            "description": "Calculate project delays and timeline analysis",
+            "icon": "⏰",
+            "category": "monitoring",
             "status": "internal", 
             "url": None,
-            "page": "pages/06_Payment_Processing.py"
+            "page": "pages/06_Delay_Calculator.py"
         },
         {
-            "name": "Material Management",
-            "description": "Track inventory, supplies and material usage",
-            "icon": "📦",
-            "category": "operations",
+            "name": "EMD Refund",
+            "description": "Generate EMD refund receipts and documentation",
+            "icon": "💰",
+            "category": "financial",
             "status": "internal",
             "url": None,
-            "page": "pages/07_Material_Management.py"
+            "page": "pages/07_EMD_Refund.py"
         },
         {
-            "name": "Quality Control",
-            "description": "Quality assurance and compliance tracking",
-            "icon": "✅",
+            "name": "Financial Progress",
+            "description": "Track financial progress and liquidity damages",
+            "icon": "📈",
             "category": "monitoring",
             "status": "internal",
             "url": None,
-            "page": "pages/08_Quality_Control.py"
+            "page": "pages/08_Financial_Progress.py"
         },
         {
-            "name": "Progress Monitoring",
-            "description": "Track project progress and milestone completion",
-            "icon": "📈", 
-            "category": "monitoring",
+            "name": "Security Refund",
+            "description": "Process security deposit refund calculations",
+            "icon": "🔒", 
+            "category": "financial",
             "status": "internal",
             "url": None,
-            "page": "pages/09_Progress_Monitoring.py"
+            "page": "pages/09_Security_Refund.py"
         },
         {
-            "name": "Report Generator",
-            "description": "Generate comprehensive PWD reports and analytics",
-            "icon": "📄",
-            "category": "monitoring",
+            "name": "Stamp Duty",
+            "description": "Calculate stamp duty for work orders",
+            "icon": "📋",
+            "category": "financial",
             "status": "internal",
             "url": None,
-            "page": "pages/10_Report_Generator.py"
+            "page": "pages/10_Stamp_Duty.py"
         }
     ]
     
