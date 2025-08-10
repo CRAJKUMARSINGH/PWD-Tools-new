@@ -9,6 +9,8 @@ The platform features a user-friendly interface with colorful, intuitive design 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Design approach: Keep it simple and clean - no extra variables, computations, or additional information.
+Target users: Nascent PWD clerks - all features must be as per approved statutory design and formats.
 
 ## System Architecture
 

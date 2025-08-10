@@ -100,7 +100,7 @@ def create_tool_grid():
     
     colors = get_tool_colors()
     
-    # Create grid layout (2 rows of 5 tools each)
+    # Create simplified grid layout (2 rows of 5 tools each)
     for row in range(2):
         cols = st.columns(5)
         for col_idx, col in enumerate(cols):
@@ -116,31 +116,20 @@ def create_tool_button(tool, colors):
     category_color = colors.get(tool["category"], colors["operations"])
     status_indicator = "🔗" if tool["status"] == "external" else "🏠"
     
-    # Create button container
+    # Create simple button container
     button_html = f"""
     <div class="tool-button" style="
-        background: linear-gradient(135deg, {category_color['bg']} 0%, #ffffff 100%);
+        background: {category_color['bg']};
         border: 2px solid {category_color['border']};
-        border-radius: 15px;
-        padding: 20px;
+        border-radius: 10px;
+        padding: 15px;
         text-align: center;
-        margin-bottom: 20px;
-        min-height: 180px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        margin-bottom: 15px;
+        min-height: 120px;
     ">
-        <div style="font-size: 3rem; margin-bottom: 10px;">{tool['icon']}</div>
-        <div style="font-size: 1.1rem; font-weight: bold; color: {category_color['border']}; margin-bottom: 8px;">
+        <div style="font-size: 2.5rem; margin-bottom: 8px;">{tool['icon']}</div>
+        <div style="font-size: 1rem; font-weight: bold; color: {category_color['border']};">
             {tool['name']} {status_indicator}
-        </div>
-        <div style="font-size: 0.85rem; color: #666; line-height: 1.3;">
-            {tool['description']}
-        </div>
-        <div style="margin-top: 10px;">
-            <span style="background-color: {category_color['border']}; color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.7rem;">
-                {tool['category'].title()}
-            </span>
         </div>
     </div>
     """

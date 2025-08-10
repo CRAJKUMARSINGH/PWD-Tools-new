@@ -98,7 +98,6 @@ def show_header():
     <div class="header-container">
         <h1>🏗️ PWD Tools Hub</h1>
         <h3>Infrastructure Management Suite</h3>
-        <p>Comprehensive PWD Operations Platform | Designed for Simplicity & Efficiency</p>
     </div>
     """, unsafe_allow_html=True)
 
