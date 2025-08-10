@@ -15,13 +15,13 @@ apply_custom_css()
 create_breadcrumb("Security Refund")
 
 def main():
-    # Read and display the HTML content
+    # Read and display the HTML content at full width
     try:
         with open("static/html/SecurityRefund.html", "r", encoding="utf-8") as f:
             html_content = f.read()
         
-        # Display the HTML content
-        components.html(html_content, height=800, scrolling=True)
+        # Display the HTML content at full width
+        components.html(html_content, height=800, scrolling=True, width=None)
         
     except FileNotFoundError:
         st.error("Tool not available")

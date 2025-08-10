@@ -14,16 +14,12 @@ apply_custom_css()
 create_breadcrumb("Bill & Deviation")
 
 def main():
-    # Access button
-    col1, col2, col3 = st.columns([1, 2, 1])
+    # Center content with full width
+    col1, col2, col3 = st.columns([1, 8, 1])
     with col2:
+        # Access button
         if st.button("🔗 Open Tool", type="primary", use_container_width=True):
-            st.markdown("""
-            <script>
-                window.open('https://stream-bill-generator-pjzpbb7a9fdxfmpgpg7t4d.streamlit.app/', '_blank');
-            </script>
-            """, unsafe_allow_html=True)
-            st.success("Tool opened!")
+            st.warning("This tool requires login. Contact administrator for access.")
             st.markdown("🔗 [Open Tool](https://stream-bill-generator-pjzpbb7a9fdxfmpgpg7t4d.streamlit.app/)")
 
 # Navigation

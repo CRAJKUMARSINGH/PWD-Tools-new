@@ -48,9 +48,9 @@ The platform uses a hybrid approach for tool integration:
 ## External Dependencies
 
 ### External Tool Integrations
-- **Excel se EMD**: Hand Receipt Generator hosted on `marudharhr.onrender.com`
-- **Bill & Deviation**: Infrastructure Billing System on Streamlit Cloud (`stream-bill-generator-pjzpbb7a9fdxfmpgpg7t4d.streamlit.app`)
-- **Tender Processing**: Tender Management System on Streamlit Cloud (`priyankatenderfinal-unlhs2yudbpg2ipxgdggws.streamlit.app`)
+- **Excel se EMD**: Hand Receipt Generator hosted on `marudharhr.onrender.com` (Working)
+- **Bill & Deviation**: Infrastructure Billing System on Streamlit Cloud (`stream-bill-generator-pjzpbb7a9fdxfmpgpg7t4d.streamlit.app`) (Requires Authentication)
+- **Tender Processing**: Tender Management System on Streamlit Cloud (`priyankatenderfinal-unlhs2yudbpg2ipxgdggws.streamlit.app`) (Requires Authentication)
 
 ### Framework Dependencies
 - **Streamlit**: Core web application framework for rapid deployment

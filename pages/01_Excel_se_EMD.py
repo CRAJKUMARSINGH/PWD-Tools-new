@@ -14,9 +14,10 @@ apply_custom_css()
 create_breadcrumb("Excel se EMD")
 
 def main():
-    # Access button
-    col1, col2, col3 = st.columns([1, 2, 1])
+    # Center content with full width
+    col1, col2, col3 = st.columns([1, 8, 1])
     with col2:
+        # Access button
         if st.button("🔗 Open Tool", type="primary", use_container_width=True):
             st.markdown("""
             <script>
