@@ -17,12 +17,6 @@ create_breadcrumb("Delay Calculator")
 def main():
     st.markdown("## ⏰ Delay Calculator")
     
-    st.info("""
-    **Project Delay Analysis Tool**
-    
-    Calculate project delays and analyze timeline variations for PWD infrastructure projects.
-    """)
-    
     # Read and display the HTML content
     try:
         with open("static/html/DelayCalculator.html", "r", encoding="utf-8") as f:
@@ -32,17 +26,7 @@ def main():
         components.html(html_content, height=600, scrolling=True)
         
     except FileNotFoundError:
-        st.error("Delay Calculator tool is currently unavailable. Please contact administrator.")
-        
-        # Fallback information
-        st.markdown("### Tool Features:")
-        st.markdown("""
-        - Calculate project delays
-        - Timeline analysis
-        - Date comparison
-        - Delay reporting
-        - Simple interface
-        """)
+        st.error("Tool not available")
 
 # Navigation
 create_back_button()

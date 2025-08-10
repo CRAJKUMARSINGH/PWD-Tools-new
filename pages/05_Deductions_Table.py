@@ -15,13 +15,7 @@ apply_custom_css()
 create_breadcrumb("Deductions Table")
 
 def main():
-    st.markdown("## 📊 Deductions Table Generator")
-    
-    st.info("""
-    **Calculate All Standard Deductions**
-    
-    Generate comprehensive deduction tables for bill amounts with all standard PWD deductions.
-    """)
+    st.markdown("## 📊 Deductions Table")
     
     # Read and display the HTML content
     try:
@@ -32,7 +26,7 @@ def main():
         components.html(html_content, height=800, scrolling=True)
         
     except FileNotFoundError:
-        st.error("Deductions Table tool is currently unavailable. Please contact administrator.")
+        st.error("Tool not available")
 
 # Navigation
 create_back_button()

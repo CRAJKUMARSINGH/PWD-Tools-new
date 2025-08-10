@@ -17,12 +17,6 @@ create_breadcrumb("Security Refund")
 def main():
     st.markdown("## 🔒 Security Refund")
     
-    st.info("""
-    **Process Security Deposit Refund**
-    
-    Calculate and process security deposit refund calculations for PWD projects.
-    """)
-    
     # Read and display the HTML content
     try:
         with open("static/html/SecurityRefund.html", "r", encoding="utf-8") as f:
@@ -32,7 +26,7 @@ def main():
         components.html(html_content, height=800, scrolling=True)
         
     except FileNotFoundError:
-        st.error("Security Refund tool is currently unavailable. Please contact administrator.")
+        st.error("Tool not available")
 
 # Navigation
 create_back_button()

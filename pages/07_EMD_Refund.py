@@ -17,12 +17,6 @@ create_breadcrumb("EMD Refund")
 def main():
     st.markdown("## 💰 EMD Refund")
     
-    st.info("""
-    **Generate EMD Refund Receipts**
-    
-    Generate EMD refund receipts and documentation with RPWA 28 format.
-    """)
-    
     # Read and display the HTML content
     try:
         with open("static/html/EmdRefund.html", "r", encoding="utf-8") as f:
@@ -32,7 +26,7 @@ def main():
         components.html(html_content, height=800, scrolling=True)
         
     except FileNotFoundError:
-        st.error("EMD Refund tool is currently unavailable. Please contact administrator.")
+        st.error("Tool not available")
 
 # Navigation
 create_back_button()

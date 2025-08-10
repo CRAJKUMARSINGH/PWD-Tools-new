@@ -15,13 +15,7 @@ apply_custom_css()
 create_breadcrumb("Stamp Duty")
 
 def main():
-    st.markdown("## 📋 Stamp Duty Calculator")
-    
-    st.info("""
-    **Calculate Stamp Duty for Work Orders**
-    
-    Calculate stamp duty amounts for PWD work orders based on statutory rates.
-    """)
+    st.markdown("## 📋 Stamp Duty")
     
     # Read and display the HTML content
     try:
@@ -32,7 +26,7 @@ def main():
         components.html(html_content, height=600, scrolling=True)
         
     except FileNotFoundError:
-        st.error("Stamp Duty tool is currently unavailable. Please contact administrator.")
+        st.error("Tool not available")
 
 # Navigation
 create_back_button()

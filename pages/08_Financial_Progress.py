@@ -15,13 +15,7 @@ apply_custom_css()
 create_breadcrumb("Financial Progress")
 
 def main():
-    st.markdown("## 📈 Financial Progress Tracker")
-    
-    st.info("""
-    **Track Financial Progress and Liquidity Damages**
-    
-    Calculate financial progress and liquidity damages for PWD projects.
-    """)
+    st.markdown("## 📈 Financial Progress")
     
     # Read and display the HTML content
     try:
@@ -32,7 +26,7 @@ def main():
         components.html(html_content, height=800, scrolling=True)
         
     except FileNotFoundError:
-        st.error("Financial Progress tool is currently unavailable. Please contact administrator.")
+        st.error("Tool not available")
 
 # Navigation
 create_back_button()

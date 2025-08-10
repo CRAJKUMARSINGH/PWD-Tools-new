@@ -15,13 +15,7 @@ apply_custom_css()
 create_breadcrumb("Contract Management System")
 
 def main():
-    st.markdown("## 📝 Bill Note Sheet Generator")
-    
-    st.info("""
-    **बिल नोट शीट जेनरेटर (हिन्दी)**
-    
-    Generate bill note sheets for PWD documentation in Hindi language with all required statutory formats.
-    """)
+    st.markdown("## 📝 Bill Note Sheet")
     
     # Read and display the HTML content
     try:
@@ -32,17 +26,7 @@ def main():
         components.html(html_content, height=800, scrolling=True)
         
     except FileNotFoundError:
-        st.error("Bill Note Sheet tool is currently unavailable. Please contact administrator.")
-        
-        # Fallback information
-        st.markdown("### Tool Features:")
-        st.markdown("""
-        - Generate Hindi bill note sheets
-        - Support for running and final bills
-        - Automatic date formatting
-        - Statutory PWD compliance
-        - Print-ready format
-        """)
+        st.error("Tool not available")
 
 # Navigation
 create_back_button()
