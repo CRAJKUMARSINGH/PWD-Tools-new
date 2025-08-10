@@ -14,19 +14,17 @@ apply_custom_css()
 create_breadcrumb("Tender Processing")
 
 def main():
-    st.markdown("## 📑 Tender Processing")
-    
     # Access button
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        if st.button("🔗 Open Tender Processing Tool", type="primary", use_container_width=True):
+        if st.button("🔗 Open Tool", type="primary", use_container_width=True):
             st.markdown("""
             <script>
                 window.open('https://priyankatenderfinal-unlhs2yudbpg2ipxgdggws.streamlit.app/', '_blank');
             </script>
             """, unsafe_allow_html=True)
             st.success("Tool opened!")
-            st.markdown("🔗 [Open Tender Processing Tool](https://priyankatenderfinal-unlhs2yudbpg2ipxgdggws.streamlit.app/)")
+            st.markdown("🔗 [Open Tool](https://priyankatenderfinal-unlhs2yudbpg2ipxgdggws.streamlit.app/)")
 
 # Navigation
 create_back_button()

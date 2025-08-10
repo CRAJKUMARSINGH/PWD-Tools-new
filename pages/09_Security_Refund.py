@@ -15,8 +15,6 @@ apply_custom_css()
 create_breadcrumb("Security Refund")
 
 def main():
-    st.markdown("## 🔒 Security Refund")
-    
     # Read and display the HTML content
     try:
         with open("static/html/SecurityRefund.html", "r", encoding="utf-8") as f:

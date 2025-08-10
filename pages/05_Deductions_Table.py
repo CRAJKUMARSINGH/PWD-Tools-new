@@ -15,8 +15,6 @@ apply_custom_css()
 create_breadcrumb("Deductions Table")
 
 def main():
-    st.markdown("## 📊 Deductions Table")
-    
     # Read and display the HTML content
     try:
         with open("static/html/DeductionsTable.html", "r", encoding="utf-8") as f:

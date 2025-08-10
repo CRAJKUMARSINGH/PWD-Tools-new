@@ -15,8 +15,6 @@ apply_custom_css()
 create_breadcrumb("Delay Calculator")
 
 def main():
-    st.markdown("## ⏰ Delay Calculator")
-    
     # Read and display the HTML content
     try:
         with open("static/html/DelayCalculator.html", "r", encoding="utf-8") as f:

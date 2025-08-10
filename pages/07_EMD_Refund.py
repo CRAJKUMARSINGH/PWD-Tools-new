@@ -15,8 +15,6 @@ apply_custom_css()
 create_breadcrumb("EMD Refund")
 
 def main():
-    st.markdown("## 💰 EMD Refund")
-    
     # Read and display the HTML content
     try:
         with open("static/html/EmdRefund.html", "r", encoding="utf-8") as f:

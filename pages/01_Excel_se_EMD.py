@@ -14,19 +14,17 @@ apply_custom_css()
 create_breadcrumb("Excel se EMD")
 
 def main():
-    st.markdown("## 📊 Excel se EMD")
-    
     # Access button
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        if st.button("🔗 Open Excel se EMD Tool", type="primary", use_container_width=True):
+        if st.button("🔗 Open Tool", type="primary", use_container_width=True):
             st.markdown("""
             <script>
                 window.open('https://marudharhr.onrender.com/', '_blank');
             </script>
             """, unsafe_allow_html=True)
             st.success("Tool opened!")
-            st.markdown("🔗 [Open Excel se EMD Tool](https://marudharhr.onrender.com/)")
+            st.markdown("🔗 [Open Tool](https://marudharhr.onrender.com/)")
 
 # Navigation
 create_back_button()

@@ -15,8 +15,6 @@ apply_custom_css()
 create_breadcrumb("Stamp Duty")
 
 def main():
-    st.markdown("## 📋 Stamp Duty")
-    
     # Read and display the HTML content
     try:
         with open("static/html/StampDuty.html", "r", encoding="utf-8") as f:

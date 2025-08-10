@@ -15,8 +15,6 @@ apply_custom_css()
 create_breadcrumb("Financial Progress")
 
 def main():
-    st.markdown("## 📈 Financial Progress")
-    
     # Read and display the HTML content
     try:
         with open("static/html/FinancialProgressTracker.html", "r", encoding="utf-8") as f:

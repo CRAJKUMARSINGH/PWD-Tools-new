@@ -12,11 +12,9 @@ st.set_page_config(
 
 # Apply branding
 apply_custom_css()
-create_breadcrumb("Contract Management System")
+create_breadcrumb("Bill Note Sheet")
 
 def main():
-    st.markdown("## 📝 Bill Note Sheet")
-    
     # Read and display the HTML content
     try:
         with open("static/html/BillNoteSheet.html", "r", encoding="utf-8") as f:
