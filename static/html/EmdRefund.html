@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=210mm, height=297mm">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hand Receipt (RPWA 28)</title>
     <style>
         body {
@@ -12,18 +12,23 @@
         }
 
         .container {
-            width: 210mm;
-            min-height: 297mm;
-            margin: 10mm;
-            border: 2px solid #ccc;
-            padding: 20px;
+            width: 100%;
+            max-width: 900px;
+            min-height: auto;
+            margin: 20px auto;
+            border: 1px solid #e1e8e3;
+            padding: 24px;
             box-sizing: border-box;
             position: relative;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
         }
 
         .header {
             text-align: center;
-            margin-bottom: 2px;
+            margin-bottom: 10px;
+            color: #2E8B57;
         }
 
         .details {
@@ -174,18 +179,20 @@
         #generate-button {
             width: 100%;
             padding: 12px;
-            background-color: #2196F3;
+            background-color: #2E8B57;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform .05s ease;
+            box-shadow: 0 6px 14px rgba(46,139,87,0.25);
         }
 
         #generate-button:hover {
-            background-color: #1976D2;
+            background-color: #228B22;
+            transform: translateY(-1px);
         }
     </style>
 </head>
@@ -204,6 +211,14 @@
     <div class="container" id="receipt-content"></div>
 
     <script>
+        // Celebration balloons
+        (function addBalloonStyles(){ if (document.getElementById('balloon-styles')) return; const css = `
+.balloons-container{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:9999}
+.balloon{position:absolute;bottom:-10%;width:22px;height:28px;border-radius:50% 50% 45% 45%;opacity:.9;animation:floatUp linear forwards}
+.balloon:after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:2px;height:10px;background:rgba(0,0,0,.2)}
+@keyframes floatUp{to{transform:translateY(-120vh)}}
+`; const style = document.createElement('style'); style.id='balloon-styles'; style.textContent = css; document.head.appendChild(style); })();
+        function triggerBalloons(total=24){ const colors=['#2E8B57','#3CB371','#20B2AA','#66CDAA','#90EE90','#32CD32','#228B22','#7FFFD4']; const cont=document.createElement('div'); cont.className='balloons-container'; document.body.appendChild(cont); for(let i=0;i<total;i++){ const b=document.createElement('div'); b.className='balloon'; const size=18+Math.random()*18; b.style.width=size+'px'; b.style.height=size*1.25+'px'; b.style.left=(Math.random()*100)+'%'; const dur=5+Math.random()*3; b.style.animationDuration=dur+'s'; b.style.animationDelay=(Math.random()*0.8)+'s'; b.style.background=colors[Math.floor(Math.random()*colors.length)]; cont.appendChild(b);} setTimeout(()=>{cont.remove();}, 8000); }
         function convertNumberToWords(num) {
             const ones = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
             const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
@@ -325,6 +340,7 @@
                 const receiptHTML = generateReceiptHTML(enteredPayee, enteredAmount, enteredWork);
                 document.getElementById('receipt-content').innerHTML = receiptHTML;
                 document.getElementById('prompt-container').style.display = 'none';
+                try{ triggerBalloons(); triggerConfetti(); }catch(e){}
                 setTimeout(function() {
                     window.print();
                 }, 100);

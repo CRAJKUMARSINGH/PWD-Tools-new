@@ -20,8 +20,10 @@ def main():
         with open("static/html/DelayCalculator.html", "r", encoding="utf-8") as f:
             html_content = f.read()
         
-        # Display the HTML content at full width
-        components.html(html_content, height=600, scrolling=True, width=None)
+        # Display the HTML content centered with wide width
+        col_left, col_center, col_right = st.columns([1, 10, 1])
+        with col_center:
+            components.html(html_content, height=600, scrolling=True, width=1200)
         
     except FileNotFoundError:
         st.error("Tool not available")
