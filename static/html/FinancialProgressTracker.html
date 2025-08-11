@@ -52,7 +52,7 @@
         }
         
         h2 {
-            color: var(--secondary-color);
+            color: #2E8B57;
             font-size: 1.5rem;
             margin-bottom: 20px;
         }
@@ -97,7 +97,7 @@
         
         button {
             padding: 12px 24px;
-            background-color: var(--secondary-color);
+            background-color: #2E8B57;
             color: var(--light-text);
             border: none;
             border-radius: var(--border-radius);
@@ -106,10 +106,11 @@
             font-weight: 600;
             transition: all 0.3s;
             flex: 1;
+            box-shadow: 0 6px 14px rgba(46,139,87,0.25);
         }
         
         button:hover {
-            background-color: #2980b9;
+            background-color: #228B22;
             transform: translateY(-2px);
         }
         
@@ -426,6 +427,14 @@
     </div>
 
     <script>
+    // Celebration balloons
+    (function addBalloonStyles(){ if (document.getElementById('balloon-styles')) return; const css = `
+.balloons-container{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:9999}
+.balloon{position:absolute;bottom:-10%;width:22px;height:28px;border-radius:50% 50% 45% 45%;opacity:.9;animation:floatUp linear forwards}
+.balloon:after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:2px;height:10px;background:rgba(0,0,0,.2)}
+@keyframes floatUp{to{transform:translateY(-120vh)}}
+`; const style = document.createElement('style'); style.id='balloon-styles'; style.textContent = css; document.head.appendChild(style); })();
+    (function addConfettiStyles(){ if (document.getElementById('confetti-styles')) return; const css = `.confetti-container{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:9999}.confetti{position:absolute;top:-10%;width:8px;height:14px;opacity:.9;animation:confettiFall linear forwards}@keyframes confettiFall{to{transform:translateY(120vh) rotate(720deg)}}`; const s=document.createElement('style'); s.id='confetti-styles'; s.textContent=css; document.head.appendChild(s);} )(); function triggerConfetti(total=120){ const colors=['#ff6b6b','#ffd93d','#6bcb77','#4d96ff','#9b5de5','#f15bb5','#00bbf9','#2E8B57']; const cont=document.createElement('div'); cont.className='confetti-container'; document.body.appendChild(cont); for(let i=0;i<total;i++){ const c=document.createElement('div'); c.className='confetti'; const size=6+Math.random()*6; c.style.width=size+'px'; c.style.height=(size*1.5)+'px'; c.style.left=(Math.random()*100)+'%'; c.style.background=colors[Math.floor(Math.random()*colors.length)]; c.style.animationDuration=(4+Math.random()*3)+'s'; c.style.animationDelay=(Math.random()*0.5)+'s'; cont.appendChild(c);} setTimeout(()=>cont.remove(), 6000);} function triggerBalloons(total=24){ const colors=['#2E8B57','#3CB371','#20B2AA','#66CDAA','#90EE90','#32CD32','#228B22','#7FFFD4']; const cont=document.createElement('div'); cont.className='balloons-container'; document.body.appendChild(cont); for(let i=0;i<total;i++){ const b=document.createElement('div'); b.className='balloon'; const size=18+Math.random()*18; b.style.width=size+'px'; b.style.height=size*1.25+'px'; b.style.left=(Math.random()*100)+'%'; const dur=5+Math.random()*3; b.style.animationDuration=dur+'s'; b.style.animationDelay=(Math.random()*0.8)+'s'; b.style.background=colors[Math.floor(Math.random()*colors.length)]; cont.appendChild(b);} setTimeout(()=>{cont.remove();}, 8000); }
         // Format currency in Indian Rupees format
         function formatCurrency(amount) {
             return new Intl.NumberFormat('en-IN', {
@@ -619,6 +628,7 @@
             resultsDiv.style.display = "block";
             successDiv.innerHTML = "An Initiative by Mrs. Premlata Jain, AAO, PWD, Udaipur, Rajasthan<br>Based on prevailing PWF&AR";
             successDiv.style.display = "block";
+            try{ triggerBalloons(); triggerConfetti(); }catch(e){}
         }
         
         function resetForm() {
