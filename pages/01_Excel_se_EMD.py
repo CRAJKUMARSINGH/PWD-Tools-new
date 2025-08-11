@@ -6,9 +6,10 @@ import zipfile
 import re
 from utils.branding import apply_custom_css
 from utils.navigation import create_breadcrumb, create_back_button
-import subprocess, sys, pkg_resources, streamlit as st
-st.code(subprocess.check_output([sys.executable, "-m", "pip", "list"]).decode())
-st.code([d for d in pkg_resources.working_set if "openpyxl" in str(d).lower()])
+################
+import subprocess, sys, streamlit as st
+out = subprocess.check_output([sys.executable, "-m", "pip", "list"]).decode()
+st.text(out)
 # Page configuration
 st.set_page_config(
     page_title="Excel se EMD | PWD Tools Hub",
