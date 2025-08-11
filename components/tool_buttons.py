@@ -11,8 +11,8 @@ def create_tool_grid():
             "description": "Hand Receipt Generator from Excel files",
             "icon": "📊",
             "category": "financial",
-            "status": "external",
-            "url": "https://marudharhr.onrender.com/",
+            "status": "internal",
+            "url": None,
             "page": "pages/01_Excel_se_EMD.py"
         },
         {
@@ -136,15 +136,8 @@ def create_tool_button(tool, colors):
     
     st.markdown(button_html, unsafe_allow_html=True)
     
-    # Create clickable button
-    button_key = f"tool_{tool['name'].lower().replace(' ', '_')}"
-    if st.button(f"Open {tool['name']}", key=button_key, use_container_width=True):
-        if tool["status"] == "external" and tool["url"]:
-            # For external tools, navigate to the page which will handle the redirect
-            st.switch_page(tool["page"])
-        else:
-            # For internal tools, navigate directly to the page
-            st.switch_page(tool["page"])
+    # Navigation link (removes extra button clutter)
+    st.page_link(tool["page"], label=f"Open {tool['name']}")
 
 def create_category_filter():
     """Create category filter for tools"""
@@ -160,8 +153,8 @@ def show_tool_stats():
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        st.metric("🔗 External Tools", "3", "Connected")
+        st.metric("🔗 External Tools", "2", "Connected")
     with col2:
-        st.metric("🏠 Internal Tools", "7", "Available")
+        st.metric("🏠 Internal Tools", "8", "Available")
     with col3:
         st.metric("📊 Total Categories", "4", "Organized")
