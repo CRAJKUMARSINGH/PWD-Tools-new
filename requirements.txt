@@ -1,11 +1,10 @@
 --only-binary=:all:
 --prefer-binary
 
-streamlit==1.35.0
-pandas==2.2.2
+streamlit==1.29.0
+pandas==2.1.4
 numpy==1.26.4
 pillow==10.3.0
-pyarrow==15.0.2
 python-dateutil==2.9.0.post0
 pytz==2024.1
 protobuf==4.25.3
