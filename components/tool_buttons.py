@@ -16,6 +16,15 @@ def create_tool_grid():
             "page": "pages/01_Excel_se_EMD.py"
         },
         {
+            "name": "Excel se EMD-Web",
+            "description": "Excel to EMD web interface",
+            "icon": "📊",
+            "category": "financial",
+            "status": "external",
+            "url": "https://marudharhr.onrender.com/",
+            "page": "pages/12_Excel_to_EMD_Web.py"
+        },
+        {
             "name": "Bill & Deviation",
             "description": "Infrastructure Billing System with deviation tracking",
             "icon": "💰",
@@ -100,15 +109,17 @@ def create_tool_grid():
     
     colors = get_tool_colors()
     
-    # Create simplified grid layout (2 rows of 5 tools each)
-    for row in range(2):
-        cols = st.columns(5)
+    # Create grid layout dynamically in rows of 5 columns
+    num_columns = 5
+    for start_index in range(0, len(tools), num_columns):
+        cols = st.columns(num_columns)
         for col_idx, col in enumerate(cols):
-            tool_idx = row * 5 + col_idx
+            tool_idx = start_index + col_idx
             if tool_idx < len(tools):
                 tool = tools[tool_idx]
                 with col:
                     create_tool_button(tool, colors)
+
 
 def create_tool_button(tool, colors):
     """Create individual tool button with proper styling"""
