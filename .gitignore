@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+.env/
+.env*/
+
+# Packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+
+# Replit / uv
+uv.lock
+.replit
+
+# Local caches
+.cache/
+.local/
