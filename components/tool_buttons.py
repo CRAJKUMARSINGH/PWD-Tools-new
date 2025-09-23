@@ -36,7 +36,7 @@ def create_tool_grid():
             "icon": "⏱️",
             "category": "calculations",
             "status": "internal",
-            "page": "pages/delay_calculator.py"
+            "page": "pages/06_Delay_Calculator.py"
         },
         {
             "name": "EMD Refund",
@@ -76,7 +76,7 @@ def create_tool_grid():
             "icon": "📜",
             "category": "documentation",
             "status": "internal",
-            "page": "pages/11_Hand_Receipt.py"
+            "page": "pages/11_Hand_Receipt_Generator.py"
         },
         {
             "name": "Bill & Deviation",
