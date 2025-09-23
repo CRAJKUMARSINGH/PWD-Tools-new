@@ -1,8 +1,15 @@
 import streamlit as st
 import time
+import sys
+import os
+
+# Ensure the current directory is in the Python path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
 
 # Version identifier for debugging
-APP_VERSION = "1.0.0-fixed"
+APP_VERSION = "1.0.1-path-fix"
 
 # Import only the functions we actually use
 from utils.branding import apply_custom_css, show_header, show_credits
