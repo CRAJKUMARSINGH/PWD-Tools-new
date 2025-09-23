@@ -1,5 +1,10 @@
 import streamlit as st
 import time
+
+# Version identifier for debugging
+APP_VERSION = "1.0.0-fixed"
+
+# Import only the functions we actually use
 from utils.branding import apply_custom_css, show_header, show_credits
 from components.tool_buttons import create_tool_grid
 
@@ -30,9 +35,6 @@ def main():
     
     # Create the main tool grid
     create_tool_grid()
-    
-
-
 
 # Main app execution
 if __name__ == "__main__":
@@ -41,5 +43,3 @@ if __name__ == "__main__":
     # Show credits at bottom
     st.markdown("---")
     show_credits()
-    
-
