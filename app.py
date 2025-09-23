@@ -1,6 +1,6 @@
 import streamlit as st
 import time
-from utils.branding import apply_custom_css, show_header, show_credits, show_balloons
+from utils.branding import apply_custom_css, show_header, show_credits
 from components.tool_buttons import create_tool_grid
 
 # Page configuration
