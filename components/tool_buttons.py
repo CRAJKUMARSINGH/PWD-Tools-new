@@ -2,27 +2,81 @@ import streamlit as st
 from utils.branding import get_tool_colors
 
 def create_tool_grid():
-    """Create the main grid of tool buttons"""
+    """Create the main grid of tool buttons with enhanced styling"""
     
     # Tool definitions with categories and external links
     tools = [
         {
             "name": "Excel se EMD",
-            "description": "Hand Receipt Generator from Excel files",
+            "description": "Excel to EMD Refund Generator",
             "icon": "📊",
             "category": "financial",
             "status": "internal",
-            "url": None,
             "page": "pages/01_Excel_se_EMD.py"
         },
         {
-            "name": "Excel se EMD-Web",
-            "description": "Excel to EMD web interface",
-            "icon": "📊",
+            "name": "Bill Note Sheet",
+            "description": "Generate Bill Note Sheets",
+            "icon": "📝",
             "category": "financial",
-            "status": "external",
-            "url": "https://marudharhr.onrender.com/",
-            "page": "pages/12_Excel_to_EMD_Web.py"
+            "status": "internal",
+            "page": "pages/04_Bill_Note_Sheet.py"
+        },
+        {
+            "name": "Deductions Table",
+            "description": "Manage Deductions in Contracts",
+            "icon": "➖",
+            "category": "financial",
+            "status": "internal",
+            "page": "pages/05_Deductions_Table.py"
+        },
+        {
+            "name": "Delay Calculator",
+            "description": "Calculate Work Delays and Penalties",
+            "icon": "⏱️",
+            "category": "calculations",
+            "status": "internal",
+            "page": "pages/delay_calculator.py"
+        },
+        {
+            "name": "EMD Refund",
+            "description": "EMD Refund Calculator and Tracker",
+            "icon": "💸",
+            "category": "financial",
+            "status": "internal",
+            "page": "pages/07_EMD_Refund.py"
+        },
+        {
+            "name": "Financial Progress",
+            "description": "Track Financial Progress of Projects",
+            "icon": "📈",
+            "category": "monitoring",
+            "status": "internal",
+            "page": "pages/08_Financial_Progress.py"
+        },
+        {
+            "name": "Security Refund",
+            "description": "Security Deposit Refund Calculator",
+            "icon": "🔒",
+            "category": "financial",
+            "status": "internal",
+            "page": "pages/09_Security_Refund.py"
+        },
+        {
+            "name": "Stamp Duty",
+            "description": "Calculate Stamp Duty for Documents",
+            "icon": " Stamp Duty Calculator",
+            "category": "calculations",
+            "status": "internal",
+            "page": "pages/10_Stamp_Duty.py"
+        },
+        {
+            "name": "Hand Receipt",
+            "description": "Generate Hand Receipts",
+            "icon": "📜",
+            "category": "documentation",
+            "status": "internal",
+            "page": "pages/11_Hand_Receipt.py"
         },
         {
             "name": "Bill & Deviation",
@@ -30,7 +84,7 @@ def create_tool_grid():
             "icon": "💰",
             "category": "financial", 
             "status": "external",
-            "url": "https://stream-bill-generator-pjzpbb7a9fdxfmpgpg7t4d.streamlit.app/",
+            "url": "https://raj-bill-generator-v01.streamlit.app/",
             "page": "pages/02_Bill_Deviation.py"
         },
         {
@@ -41,76 +95,22 @@ def create_tool_grid():
             "status": "external", 
             "url": "https://priyankatenderfinal-unlhs2yudbpg2ipxgdggws.streamlit.app/",
             "page": "pages/03_Tender_Processing.py"
-        },
-        {
-            "name": "Bill Note Sheet",
-            "description": "Bill Note Sheet Generator for PWD documentation",
-            "icon": "📝",
-            "category": "processing",
-            "status": "internal",
-            "url": None,
-            "page": "pages/04_Bill_Note_Sheet.py"
-        },
-        {
-            "name": "Deductions Table", 
-            "description": "Calculate all standard deductions for bill amounts",
-            "icon": "📊",
-            "category": "financial",
-            "status": "internal",
-            "url": None,
-            "page": "pages/05_Deductions_Table.py"
-        },
-        {
-            "name": "Delay Calculator",
-            "description": "Calculate project delays and timeline analysis",
-            "icon": "⏰",
-            "category": "monitoring",
-            "status": "internal", 
-            "url": None,
-            "page": "pages/06_Delay_Calculator.py"
-        },
-        {
-            "name": "EMD Refund",
-            "description": "Generate EMD refund receipts and documentation",
-            "icon": "💰",
-            "category": "financial",
-            "status": "internal",
-            "url": None,
-            "page": "pages/07_EMD_Refund.py"
-        },
-        {
-            "name": "Financial Progress",
-            "description": "Track financial progress and liquidity damages",
-            "icon": "📈",
-            "category": "monitoring",
-            "status": "internal",
-            "url": None,
-            "page": "pages/08_Financial_Progress.py"
-        },
-        {
-            "name": "Security Refund",
-            "description": "Process security deposit refund calculations",
-            "icon": "🔒", 
-            "category": "financial",
-            "status": "internal",
-            "url": None,
-            "page": "pages/09_Security_Refund.py"
-        },
-        {
-            "name": "Stamp Duty",
-            "description": "Calculate stamp duty for work orders",
-            "icon": "📋",
-            "category": "financial",
-            "status": "internal",
-            "url": None,
-            "page": "pages/10_Stamp_Duty.py"
         }
     ]
     
     colors = get_tool_colors()
     
-    # Create grid layout dynamically in rows of 5 columns
-    num_columns = 5
+    # Create enhanced grid layout with better visual hierarchy
+    st.markdown("""
+    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+        <div class="header-container" style="padding: 10px 20px; border-radius: 50px; font-weight: bold;">
+            🏗️ 11 Essential Tools Available
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Create grid layout dynamically in rows of 3 columns to match repo design
+    num_columns = 3
     for start_index in range(0, len(tools), num_columns):
         cols = st.columns(num_columns)
         for col_idx, col in enumerate(cols):
@@ -122,33 +122,40 @@ def create_tool_grid():
 
 
 def create_tool_button(tool, colors):
-    """Create individual tool button with proper styling"""
+    """Create individual tool button with enhanced styling"""
     
     category_color = colors.get(tool["category"], colors["operations"])
-    status_indicator = "🔗" if tool["status"] == "external" else "🏠"
+    status_indicator = "🔗 External" if tool["status"] == "external" else "🏠 Internal"
+    status_color = "#DC143C" if tool["status"] == "external" else "#2E8B57"
     
-    # Create simple button container
+    # Create enhanced button container with design closer to repo
     button_html = f"""
-    <div class="tool-button" style="
-        background: {category_color['bg']};
-        border: 2px solid {category_color['border']};
-        border-radius: 10px;
-        padding: 15px;
-        text-align: center;
-        margin-bottom: 15px;
-        min-height: 120px;
-    ">
-        <div style="font-size: 2.5rem; margin-bottom: 8px;">{tool['icon']}</div>
-        <div style="font-size: 1rem; font-weight: bold; color: {category_color['border']};">
-            {tool['name']} {status_indicator}
+    <div class="tool-button">
+        <div style="font-size: 3rem; margin-bottom: 15px;">{tool['icon']}</div>
+        <div style="font-size: 1.2rem; font-weight: bold; color: #2E8B57; margin-bottom: 10px;">
+            {tool['name']}
+        </div>
+        <div style="font-size: 0.9rem; color: #555; min-height: 60px; margin-bottom: 15px;">
+            {tool['description']}
+        </div>
+        <div style="font-size: 0.8rem; color: {status_color}; font-weight: bold; margin-top: auto; padding: 5px 10px; border-radius: 20px; background-color: rgba(46, 139, 87, 0.1);">
+            {status_indicator}
         </div>
     </div>
     """
     
     st.markdown(button_html, unsafe_allow_html=True)
     
-    # Navigation link (removes extra button clutter)
-    st.page_link(tool["page"], label=f"Open {tool['name']}")
+    # Navigation link with enhanced styling - restoring the cool design
+    if tool["status"] == "external" and tool["url"]:
+        st.markdown(f"""
+        <a href="{tool['url']}" target="_blank">
+            Open External Tool ↗
+        </a>
+        """, unsafe_allow_html=True)
+    else:
+        st.page_link(tool["page"], label="Open Tool", icon="▶️", 
+                    use_container_width=True)
 
 def create_category_filter():
     """Create category filter for tools"""
@@ -164,8 +171,8 @@ def show_tool_stats():
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        st.metric("🔗 External Tools", "2", "Connected")
+        st.metric("🔗 External Tools", "1", "Connected")
     with col2:
-        st.metric("🏠 Internal Tools", "8", "Available")
+        st.metric("🏠 Internal Tools", "10", "Available")
     with col3:
-        st.metric("📊 Total Categories", "4", "Organized")
+        st.metric("📊 Total Categories", "5", "Organized")

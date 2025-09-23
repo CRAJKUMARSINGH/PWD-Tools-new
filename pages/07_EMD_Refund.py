@@ -19,12 +19,12 @@ def main():
     try:
         with open("static/html/EmdRefund.html", "r", encoding="utf-8") as f:
             html_content = f.read()
-        
+
         # Display the HTML content centered with wide width
         col_left, col_center, col_right = st.columns([1, 10, 1])
         with col_center:
             components.html(html_content, height=800, scrolling=True, width=1200)
-        
+
     except FileNotFoundError:
         st.error("Tool not available")
 

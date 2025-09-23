@@ -58,7 +58,7 @@
         }
 
         .offices td, .offices th {
-            border: 1px solid black;
+            border: 1px solid #000;
             padding: 5px;
             text-align: left;
             word-wrap: break-word;
@@ -71,17 +71,80 @@
             display: inline-block;
         }
 
+        .seal-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .seal {
+            width: 80px;
+            height: 80px;
+            border: 2px solid black;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            text-align: center;
+        }
+
+        .bottom-left-box {
+            position: relative;
+            border: 2px solid black;
+            padding: 10px;
+            width: 300px;
+            text-align: left;
+            margin-top: 12px;
+        }
+
+        .bottom-left-box p {
+            margin: 3px 0;
+        }
+
+        .blue-text {
+            color: blue;
+        }
+
+        #prompt-container {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #prompt-container input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+
+        #prompt-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #prompt-container button:hover {
+            background-color: #45a049;
+        }
+
         @media print {
             @page {
                 size: A4 portrait;
                 margin: 0;
             }
-
             body {
                 margin: 0;
                 padding: 0;
             }
-
             .container {
                 border: none;
                 width: 210mm;
@@ -90,115 +153,23 @@
                 padding: 20mm;
                 box-sizing: border-box;
             }
-
-            #prompt-container {
-                display: none !important;
-            }
-
             .input-field {
                 border: none;
             }
-        }
-
-        .seal-container {
-            position: absolute;
-            left: 10mm;
-            bottom: 10mm;
-            width: 40mm;
-            height: 25mm;
-            z-index: 10;
-        }
-
-        .seal {
-            max-width: 100%;
-            max-height: 100%;
-            text-align: center;
-            line-height: 40mm;
-            color: blue;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
-
-        .bottom-left-box {
-            position: absolute;
-            bottom: 40mm;
-            left: 40mm;
-            border: 2px solid black;
-            padding: 10px;
-            width: 300px;
-            text-align: left;
-            height: auto;
-        }
-
-        .bottom-left-box p {
-            margin: 3px 0;
-        }
-
-        .bottom-left-box .blue-text {
-            color: blue;
-        }
-
-        #prompt-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1000;
-            width: 320px;
-        }
-
-        #prompt-container label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        #prompt-container input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease;
-        }
-
-        #prompt-container input:focus {
-            outline: none;
-            border-color: #2196F3;
-            box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
-        }
-
-        #generate-button {
-            width: 100%;
-            padding: 12px;
-            background-color: #2E8B57;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform .05s ease;
-            box-shadow: 0 6px 14px rgba(46,139,87,0.25);
-        }
-
-        #generate-button:hover {
-            background-color: #228B22;
-            transform: translateY(-1px);
+            #prompt-container {
+                display: none;
+            }
+            .seal-container {
+                position: absolute;
+                top: 20mm;
+                right: 20mm;
+            }
         }
     </style>
 </head>
-
 <body>
     <div id="prompt-container">
+        <h3>Enter Details for EMD Refund Receipt</h3>
         <label for="payee">Payee Name:</label><br>
         <input type="text" id="payee"><br>
         <label for="amount">Amount:</label><br>
@@ -282,7 +253,7 @@
                     <p>(4) Paid by me</p>
                     <p>(5) Received from The Executive Engineer PWD Electric Division, Udaipur the sum of Rs. ${amount}/- (Rupees <span id="amount-words" class="amount-words">${amountInWords} only</span>)</p>
                     <p> Name of work for which payment is made: <span id="work-name" class="input-field">${work}</span></p>
-                    <p> Chargeable to Head:- 8443 [EMD-Refund] </p>   
+                    <p> Chargeable to Head:- 8443 [EMD-Refund] </p>
                     <table class="signature-area">
                         <tr>
                             <td>Witness</td>
@@ -290,7 +261,7 @@
                             <td>Signature of payee</td>
                         </tr>
                         <tr>
-                            <td>Cash Book No. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Page No. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>Cash Book No. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Page No. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -307,7 +278,8 @@
                         <tr>
                             <td>Accounts Clerk</td>
                             <td>
-                                DA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp  Auditor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp  Supdt. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp  G.O.
+                                DA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Auditor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Supdt. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  G.O.
                             </td>
                         </tr>
                     </table>
