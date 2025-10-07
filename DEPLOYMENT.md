@@ -91,6 +91,26 @@ python deploy.py --mode prod
 streamlit run app.py --server.address=0.0.0.0 --server.port=8501
 ```
 
+## ⚙️ Entry Points
+
+The application supports multiple entry points for different deployment scenarios:
+
+### 1. Local Development ([app.py](file://c:\Users\Rajkumar\PWD-Tools-Genspark2\app.py))
+- Used for local development with [main.bat](file://c:\Users\Rajkumar\PWD-Tools-Genspark2\main.bat)
+- Contains the main application logic
+- Includes credits display when run directly
+
+### 2. Streamlit Cloud Deployment ([streamlit_app.py](file://c:\Users\Rajkumar\PWD-Tools-Genspark2\venv\Lib\site-packages\streamlit\hello\streamlit_app.py))
+- Used by Streamlit Community Cloud as the default entry point
+- Simplified entry point that imports and runs the main application
+- Can be specified when setting up the Streamlit Cloud deployment
+
+To deploy to Streamlit Cloud:
+1. Push your code to GitHub
+2. Create a new app on Streamlit Community Cloud
+3. Point it to your repository
+4. Set `streamlit_app.py` as the main file (optional, as it's the default)
+
 ## ⚙️ Configuration
 
 ### Streamlit Configuration

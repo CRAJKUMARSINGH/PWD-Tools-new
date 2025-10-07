@@ -40,7 +40,7 @@ def main():
     # Create the main tool grid
     create_tool_grid()
 
-# Main app execution
+# Main app execution - only run when this file is executed directly
 if __name__ == "__main__":
     main()
     
