@@ -179,6 +179,12 @@ def show_credits():
     <div class="credits">
         <p>© 2023 PWD Tools Hub | Infrastructure Management Suite</p>
         <p>Built with Streamlit | Designed for Lower Divisional Clerks</p>
+        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.3);">
+            <p><strong>Initiative Credit</strong></p>
+            <p>Mrs. Premlata Jain<br>
+            Additional Administrative Officer, PWD Udaipur</p>
+            <p>Version 2.0 | Last Updated: September 2025</p>
+        </div>
     </div>
     """, unsafe_allow_html=True)
 

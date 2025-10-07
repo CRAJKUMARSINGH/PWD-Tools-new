@@ -11,6 +11,11 @@ This application provides a collection of specialized tools for PWD operations i
 - Financial Progress Tracker
 - And many more utilities
 
+**Initiative Credit:**
+_Mrs. Premlata Jain_
+_Additional Administrative Officer, PWD Udaipur_
+_Version 2.0 | Last Updated: September 2025_
+
 ## 📚 Historical Context
 
 For information about how deployment methods have evolved and how to migrate between them, see [MIGRATION.md](file://c:\Users\Rajkumar\PWD-Tools-Genspark2\MIGRATION.md).
@@ -86,7 +91,6 @@ PWD-Tools-Genspark2/
 ├── app.py                 # Main application entry point
 ├── deploy.py              # Deployment script
 ├── main.bat               # Windows batch launcher
-├── run_app_direct.bat     # Alternative Windows launcher
 ├── requirements.txt       # Python dependencies
 ├── runtime.txt            # Python runtime version
 ├── config.toml            # Server configuration
