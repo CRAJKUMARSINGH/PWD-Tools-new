@@ -82,14 +82,6 @@ def create_tool_grid():
             "page": "pages/10_Stamp_Duty.py"
         },
         {
-            "name": "Hand Receipt",
-            "description": "Generate Hand Receipts",
-            "icon": "📜",
-            "category": "documentation",
-            "status": "internal",
-            "page": "pages/11_Hand_Receipt_Generator.py"
-        },
-        {
             "name": "Main BAT Info",
             "description": "Information about the main.bat launcher program",
             "icon": "🖥️",
@@ -236,6 +228,6 @@ def show_tool_stats():
     with col1:
         st.metric("🔗 External Tools", "2", "Connected")
     with col2:
-        st.metric("🏠 Internal Tools", "9", "Available")
+        st.metric("🏠 Internal Tools", "8", "Available")
     with col3:
         st.metric("📊 Total Categories", "5", "Organized")
