@@ -1,5 +1,4 @@
 import streamlit as st
-import time
 
 def apply_custom_css():
     """Apply custom CSS styling with crane branding and green gradient theme"""
@@ -191,7 +190,6 @@ def show_credits():
 def show_success_message(message="Operation completed successfully!"):
     """Show a success message with animation"""
     st.success(f"✅ {message}")
-    time.sleep(1)
 
 # Category styles for different tool types
 def get_tool_categories():
