@@ -81,14 +81,6 @@ def create_tool_grid():
             "status": "internal",
             "page": "pages/10_Stamp_Duty.py"
         },
-        {
-            "name": "Main BAT Info",
-            "description": "Information about the main.bat launcher program",
-            "icon": "🖥️",
-            "category": "documentation",
-            "status": "internal",
-            "page": "pages/13_Main_BAT_Info.py"
-        }
     ]
     
     # Use existing color scheme from branding
@@ -178,56 +170,3 @@ def create_tool_grid():
     """, unsafe_allow_html=True)
 
 
-def create_tool_button(tool, colors):
-    """Create individual tool button with enhanced styling"""
-    
-    # Get color for the category or use default
-    category_info = colors.get(tool["category"], {"bg": "#f0f8f5", "border": "#2E8B57", "icon": "🛠️"})
-    status_indicator = "🔗 External" if tool["status"] == "external" else "🏠 Internal"
-    status_color = "#DC143C" if tool["status"] == "external" else "#2E8B57"
-    
-    # Create enhanced button container with design closer to repo
-    button_html = f"""
-    <div class="tool-button">
-        <div style="font-size: 3rem; margin-bottom: 15px;">{tool['icon']}</div>
-        <div style="font-size: 1.2rem; font-weight: bold; color: #2E8B57; margin-bottom: 10px;">
-            {tool['name']}
-        </div>
-        <div style="font-size: 0.9rem; color: #555; min-height: 60px; margin-bottom: 15px;">
-            {tool['description']}
-        </div>
-        <div style="font-size: 0.8rem; color: {status_color}; font-weight: bold; margin-top: auto; padding: 5px 10px; border-radius: 20px; background-color: rgba(46, 139, 87, 0.1);">
-            {status_indicator}
-        </div>
-    </div>
-    """
-    
-    st.markdown(button_html, unsafe_allow_html=True)
-    
-    # Navigation link with enhanced styling - restoring the cool design
-    if tool["status"] == "external" and tool["url"]:
-        st.link_button("Open External Tool ↗", tool["url"], use_container_width=True)
-    else:
-        # Use switch_page for internal tools (more reliable than page_link)
-        if st.button("Open Tool", key=f"tool_{tool['name']}", use_container_width=True):
-            st.switch_page(tool["page"])
-
-def create_category_filter():
-    """Create category filter for tools"""
-    st.sidebar.markdown("### 🎯 Filter by Category")
-    
-    categories = ["All", "Financial", "Processing", "Operations", "Monitoring"]
-    selected_category = st.sidebar.selectbox("Select Category:", categories)
-    
-    return selected_category.lower() if selected_category != "All" else None
-
-def show_tool_stats():
-    """Display statistics about available tools"""
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        st.metric("🔗 External Tools", "2", "Connected")
-    with col2:
-        st.metric("🏠 Internal Tools", "8", "Available")
-    with col3:
-        st.metric("📊 Total Categories", "5", "Organized")

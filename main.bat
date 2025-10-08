@@ -9,7 +9,7 @@ echo.
 echo The app will be available at: http://localhost:8501
 echo.
 echo For deployment instructions, see DEPLOYMENT.md
-echo Streamlit Cloud deployment uses streamlit_app.py as entry point
+echo Streamlit Cloud deployment uses app.py as entry point
 echo.
 echo Press Ctrl+C to stop the application
 echo.

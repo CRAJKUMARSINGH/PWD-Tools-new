@@ -410,17 +410,27 @@
 @keyframes floatUp{to{transform:translateY(-120vh)}}
 `; const style = document.createElement('style'); style.id='balloon-styles'; style.textContent = css; document.head.appendChild(style); })();
         function triggerBalloons(total=24){ const colors=['#2E8B57','#3CB371','#20B2AA','#66CDAA','#90EE90','#32CD32','#228B22','#7FFFD4']; const cont=document.createElement('div'); cont.className='balloons-container'; document.body.appendChild(cont); for(let i=0;i<total;i++){ const b=document.createElement('div'); b.className='balloon'; const size=18+Math.random()*18; b.style.width=size+'px'; b.style.height=size*1.25+'px'; b.style.left=(Math.random()*100)+'%'; const dur=5+Math.random()*3; b.style.animationDuration=dur+'s'; b.style.animationDelay=(Math.random()*0.8)+'s'; b.style.background=colors[Math.floor(Math.random()*colors.length)]; cont.appendChild(b);} setTimeout(()=>{cont.remove();}, 8000); }
+        // Function to escape HTML special characters
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
         function generateReport() {
-            const contractorName = document.getElementById('contractorName').value;
-            const workName = document.getElementById('workName').value;
-            const agreementNo = document.getElementById('agreementNo').value;
-            const commencementDate = document.getElementById('commencementDate').value;
-            const stipulatedDate = document.getElementById('stipulatedDate').value;
-            const actualDate = document.getElementById('actualDate').value;
-            const mbNo = document.getElementById('mbNo').value;
-            const inspectionDate = document.getElementById('inspectionDate').value;
-            const finalBillDate = document.getElementById('finalBillDate').value;
-            const dlpExpiryDate = document.getElementById('dlpExpiryDate').value;
+            const contractorName = escapeHtml(document.getElementById('contractorName').value);
+            const workName = escapeHtml(document.getElementById('workName').value);
+            const agreementNo = escapeHtml(document.getElementById('agreementNo').value);
+            const commencementDate = escapeHtml(document.getElementById('commencementDate').value);
+            const stipulatedDate = escapeHtml(document.getElementById('stipulatedDate').value);
+            const actualDate = escapeHtml(document.getElementById('actualDate').value);
+            const mbNo = escapeHtml(document.getElementById('mbNo').value);
+            const inspectionDate = escapeHtml(document.getElementById('inspectionDate').value);
+            const finalBillDate = escapeHtml(document.getElementById('finalBillDate').value);
+            const dlpExpiryDate = escapeHtml(document.getElementById('dlpExpiryDate').value);
 
             const formatDate = (dateString) => {
                 if (!dateString) return '';
@@ -436,7 +446,7 @@
                 const mbInput = row.querySelector('.bill-mb');
                 const sdInput = row.querySelector('.bill-sd');
                 const amountInput = row.querySelector('.bill-amount');
-                let billType = typeInput.value;
+                let billType = escapeHtml(typeInput.value);
                 if (index === depositRows.length - 1) {
                     if (billType.includes('RB')) {
                         billType = billType.replace('RB', 'RB & Final Bill');
@@ -447,9 +457,9 @@
                 const amount = amountInput.value ? parseFloat(amountInput.value) : 0;
                 total += amount;
                 depositDetails.push({
-                    type: billType,
-                    mb: mbInput.value || '',
-                    sd: sdInput.value || 'SD II',
+                    type: escapeHtml(billType),
+                    mb: escapeHtml(mbInput.value) || '',
+                    sd: escapeHtml(sdInput.value) || 'SD II',
                     amount: amount ? amount.toLocaleString('en-IN') : ''
                 });
             });
@@ -471,16 +481,28 @@
             resultDepositRows.innerHTML = '';
             depositDetails.forEach(detail => {
                 const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${detail.type}</td>
-                    <td>${detail.mb}</td>
-                    <td>${detail.sd}</td>
-                    <td>${detail.amount ? '₹' + detail.amount : ''}</td>
-                `;
+                
+                // Create cells using textContent to prevent XSS
+                const typeCell = document.createElement('td');
+                typeCell.textContent = detail.type;
+                row.appendChild(typeCell);
+                
+                const mbCell = document.createElement('td');
+                mbCell.textContent = detail.mb;
+                row.appendChild(mbCell);
+                
+                const sdCell = document.createElement('td');
+                sdCell.textContent = detail.sd;
+                row.appendChild(sdCell);
+                
+                const amountCell = document.createElement('td');
+                amountCell.textContent = detail.amount ? '₹' + detail.amount : '';
+                row.appendChild(amountCell);
+                
                 resultDepositRows.appendChild(row);
             });
 
-                        document.getElementById('result').style.display = 'block';
+            document.getElementById('result').style.display = 'block';
             try{ triggerBalloons(); triggerConfetti(); }catch(e){}
         }
         

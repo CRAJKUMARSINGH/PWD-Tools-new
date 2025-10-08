@@ -6,7 +6,7 @@ This checklist verifies that all necessary components for deployment to Streamli
 
 ### 1. Entry Points
 - [x] `app.py` - Main application entry point for local development
-- [x] `streamlit_app.py` - Streamlit Cloud entry point
+
 - [x] `main.bat` - Windows launcher with deployment notes
 
 ### 2. Required Files
@@ -27,7 +27,7 @@ This checklist verifies that all necessary components for deployment to Streamli
 
 1. **Repository**: https://github.com/CRAJKUMARSINGH/PWD-Tools-Genspark2.git
 2. **Branch**: main
-3. **Entry Point**: streamlit_app.py (default or specified)
+3. **Entry Point**: app.py (default or specified)
 4. **Dependencies**: Automatically installed from requirements.txt
 5. **Python Version**: Specified in runtime.txt
 
@@ -55,7 +55,7 @@ When setting up on Streamlit Cloud:
 2. Create new app
 3. Connect to GitHub repository: CRAJKUMARSINGH/PWD-Tools-Genspark2
 4. Select branch: main
-5. Entry point: streamlit_app.py (optional, as it's often the default)
+5. Entry point: app.py (optional, as it's often the default)
 6. Click "Deploy!"
 
 ## ✅ Troubleshooting

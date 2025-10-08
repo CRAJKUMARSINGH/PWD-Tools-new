@@ -4,6 +4,7 @@ import pandas as pd
 from io import BytesIO
 import zipfile
 import re
+import html  # Add html module for escaping
 from utils.branding import apply_custom_css
 from utils.navigation import create_breadcrumb, create_back_button
 ################
@@ -32,9 +33,10 @@ def build_receipt_html(payee: str, amount_value: float, work: str) -> str:
         amount_float = 0.0
         amount_str = "0.00"
     
-    # Escape single quotes in strings for JavaScript
-    payee_js = payee.replace("'", r"\'")
-    work_js = work.replace("'", r"\'")
+    # Properly escape user inputs to prevent XSS
+    payee_escaped = html.escape(payee.strip())
+    work_escaped = html.escape(work.strip())
+    amount_escaped = html.escape(amount_str)
     
     html = f"""
 <!DOCTYPE html>
@@ -68,7 +70,7 @@ def build_receipt_html(payee: str, amount_value: float, work: str) -> str:
   <div class="container">
     <div id="receipt-content">
       <div class="header">
-        <h2>Payable to: - {payee} (Electric Contractor)</h2>
+        <h2>Payable to: - {payee_escaped} (Electric Contractor)</h2>
         <h2>HAND RECEIPT (RPWA 28)</h2>
         <p>(Referred to in PWF&A Rules 418,424,436 & 438)</p>
         <p>Division - PWD Electric Division, Udaipur</p>
@@ -76,10 +78,10 @@ def build_receipt_html(payee: str, amount_value: float, work: str) -> str:
       <div class="details">
         <p>(1)Cash Book Voucher No. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         <p>(2)Cheque No. and Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        <p>(3) Pay for ECS Rs. {amount_str}/- (Rupees <span id="amount-words" class="amount-words"></span>)</p>
+        <p>(3) Pay for ECS Rs. {amount_escaped}/- (Rupees <span id="amount-words" class="amount-words"></span>)</p>
         <p>(4) Paid by me</p>
-        <p>(5) Received from The Executive Engineer PWD Electric Division, Udaipur the sum of Rs. {amount_str}/- (Rupees <span id="amount-words-2" class="amount-words"></span>)</p>
-        <p>Name of work for which payment is made: <span id="work-name" class="input-field">{work}</span></p>
+        <p>(5) Received from The Executive Engineer PWD Electric Division, Udaipur the sum of Rs. {amount_escaped}/- (Rupees <span id="amount-words-2" class="amount-words"></span>)</p>
+        <p>Name of work for which payment is made: <span id="work-name" class="input-field">{work_escaped}</span></p>
         <p>Chargeable to Head:- 8443 [EMD-Refund]</p>
         <table class="signature-area">
           <tr><td>Witness</td><td>Stamp</td><td>Signature of payee</td></tr>
@@ -92,7 +94,7 @@ def build_receipt_html(payee: str, amount_value: float, work: str) -> str:
         </table>
       </div>
       <div class="bottom-left-box">
-        <p class="blue-text">Passed for Rs. {amount_str}</p>
+        <p class="blue-text">Passed for Rs. {amount_escaped}</p>
         <p class="blue-text" id="amount-words-3">In Words Rupees: </p>
         <p class="blue-text">Chargeable to Head:- 8443 [EMD-Refund]</p>
         <div class="seal">
@@ -178,10 +180,10 @@ def build_receipt_html(payee: str, amount_value: float, work: str) -> str:
 </body>
 </html>
 """.format(
-        payee=payee_js,
-        work=work_js,
+        payee=payee_escaped,
+        work=work_escaped,
         amount_float=amount_float,
-        amount_str=amount_str
+        amount_str=amount_escaped
     )
     
     return html
@@ -239,23 +241,20 @@ def main():
         create_back_button()
         return
 
-    # Debug: Show sheet names and first few rows
-    st.write("### Debug - Excel File Structure")
-    try:
-        xls = pd.ExcelFile(uploaded, engine="openpyxl")
-        st.write(f"Sheet names: {xls.sheet_names}")
-        
-        # Show first sheet data
-        df_debug = pd.read_excel(uploaded, sheet_name=0, nrows=5)
-        st.write("First 5 rows of first sheet:")
-        st.dataframe(df_debug)
-        
-        # Show column data types
-        st.write("Column data types:")
-        st.dataframe(df_debug.dtypes.rename('Data Type').to_frame())
-        
-    except Exception as e:
-        st.error(f"Error analyzing Excel file: {e}")
+    # Debug: Show sheet names and first few rows (only for Excel files)
+    if uploaded.name.lower().endswith(".xlsx"):
+        st.write("### Debug - Excel File Structure")
+        try:
+            # Use the already read dataframe for debugging
+            st.write("First 5 rows of data:")
+            st.dataframe(df.head(5))
+            
+            # Show column data types
+            st.write("Column data types:")
+            st.dataframe(df.dtypes.rename('Data Type').to_frame())
+            
+        except Exception as e:
+            st.error(f"Error showing debug information: {e}")
 
     st.markdown("##### Preview")
     st.dataframe(df.head(20), use_container_width=True)
@@ -386,10 +385,18 @@ def main():
             st.caption(f"Showing first 20 downloads. Use ZIP for all {len(records)} receipts.")
 
     with col_b:
+        # Optimized ZIP creation with streaming to reduce memory usage
         buf = BytesIO()
-        with zipfile.ZipFile(buf, mode="w", compression=zipfile.ZIP_DEFLATED) as zf:
-            for _, _, _, _, html, filename in records:
-                zf.writestr(filename, html)
+        with zipfile.ZipFile(buf, mode="w", compression=zipfile.ZIP_DEFLATED, compresslevel=6) as zf:
+            # Process in batches to reduce memory footprint
+            batch_size = 100
+            for i in range(0, len(records), batch_size):
+                batch = records[i:i+batch_size]
+                for _, _, _, _, html, filename in batch:
+                    zf.writestr(filename, html)
+                # Force garbage collection to free memory
+                import gc
+                gc.collect()
         buf.seek(0)
         st.download_button(
             label=f"Download all as ZIP ({len(records)} files)",
