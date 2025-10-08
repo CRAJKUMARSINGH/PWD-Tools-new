@@ -38,7 +38,7 @@ def build_receipt_html(payee: str, amount_value: float, work: str) -> str:
     work_escaped = html.escape(work.strip())
     amount_escaped = html.escape(amount_str)
     
-    html = f"""
+    html_content = f"""
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -179,14 +179,9 @@ def build_receipt_html(payee: str, amount_value: float, work: str) -> str:
   </script>
 </body>
 </html>
-""".format(
-        payee=payee_escaped,
-        work=work_escaped,
-        amount_float=amount_float,
-        amount_str=amount_escaped
-    )
-    
-    return html
+"""
+	
+	return html_content
 
 def main():
     st.markdown("#### Generate Hand Receipts (RPWA 28) from Excel")

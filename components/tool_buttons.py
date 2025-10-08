@@ -145,28 +145,12 @@ def create_tool_grid():
             
             # Hidden button for navigation functionality
             if tool['status'] == 'internal':
-                if st.button(f"Navigate to {tool['name']}", key=f"tool-button-{i}", disabled=True, use_container_width=True):
+                if st.button(f"Open {tool['name']}", key=f"tool-button-{i}", use_container_width=True):
                     st.switch_page(tool['page'])
             else:
-                if st.button(f"Open {tool['name']}", key=f"tool-button-{i}", disabled=True, use_container_width=True):
-                    if 'url' in tool:
-                        st.markdown(f"<meta http-equiv='refresh' content='0; url={tool['url']}'>", unsafe_allow_html=True)
+                if 'url' in tool:
+                    st.link_button(f"Open {tool['name']}", tool['url'], use_container_width=True)
     
-    # Add JavaScript to handle click events since Streamlit doesn't support it directly
-    st.markdown("""
-    <script>
-    // Add click event handlers to all tool cards
-    document.querySelectorAll('[class^="tool-card-ctk-"]').forEach((card, index) => {
-        card.addEventListener('click', () => {
-            // Find the corresponding hidden button
-            const button = document.getElementById(`tool-button-${index}`);
-            if (button) {
-                // Programmatically click the hidden button
-                button.click();
-            }
-        });
-    });
-    </script>
-    """, unsafe_allow_html=True)
+    # Removed custom JavaScript click handlers to reduce front-end weight
 
 

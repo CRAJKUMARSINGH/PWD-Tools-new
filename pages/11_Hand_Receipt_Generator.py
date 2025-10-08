@@ -5,6 +5,12 @@ from datetime import datetime
 
 def generate_receipt(data, idx):
     """Generate RPWA 28 receipt for a single row of data"""
+    amount_value = data.get('Amount', '')
+    try:
+        amount_float = float(amount_value)
+        amount_formatted = f"{amount_float:,.2f}"
+    except Exception:
+        amount_formatted = str(amount_value)
     receipt = f"""
     <div style='border: 1px solid #000; padding: 15px; margin: 10px 0; font-family: Arial, sans-serif;'>
         <div style='text-align: center; font-weight: bold; font-size: 16px; margin-bottom: 10px;'>
@@ -15,7 +21,7 @@ def generate_receipt(data, idx):
         <div style='margin-bottom: 5px;'><b>Received from:</b> {data.get('Received From', '')}</div>
         <div style='margin-bottom: 5px;'><b>Department:</b> {data.get('Department', '')}</div>
         <div style='margin-bottom: 5px;'><b>Amount (in words):</b> {data.get('Amount in Words', '')}</div>
-        <div style='margin-bottom: 5px;'><b>Amount (in figures):</b> ₹{data.get('Amount', ''):,.2f}</div>
+        <div style='margin-bottom: 5px;'><b>Amount (in figures):</b> ₹{amount_formatted}</div>
         <div style='margin-bottom: 5px;'><b>Purpose:</b> {data.get('Purpose', '')}</div>
         <div style='margin-top: 20px; display: flex; justify-content: space-between;'>
             <div style='text-align: center;'>
