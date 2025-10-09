@@ -8,9 +8,9 @@ maxUploadSize = 200
 
 [theme]
 base = "light"
-primaryColor = "#2E8B57"
+primaryColor = "#FF00FF"  # Magenta color to match CTkButton styling
 backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#F0F8F5"
+secondaryBackgroundColor = "#F5F6F5"
 textColor = "#262730"
 font = "sans serif"
 
